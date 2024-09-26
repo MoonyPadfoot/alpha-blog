@@ -4,4 +4,7 @@ class ArticlesController < ApplicationController
     render :json => params
   end
 
+  def index
+    @articles = Article.all
+  end
 end
