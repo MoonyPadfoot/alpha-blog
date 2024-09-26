@@ -1,15 +1,24 @@
 <h1>Create a new article</h1>
-
-<%= form_with scope: :article, url: articles_path, local: true do |form| %>
-  <div class="mb-3">
-    <%= form.label :title, "Title:", class: 'form-label' %>
-    <%= form.text_field :title, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :description, "Description:", class: 'form-label' %>
-    <%= form.text_area :description, class: 'form-control' %>
-  </div>
-
-  <%= form.submit "Submit" %>
+<% if @article.errors.any? %>
+  <ul>
+    <% @post.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
 <% end %>
+
+<div class="container">
+  <%= form_with model: @article do |form| %>
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.submit class: 'btn btn-lg btn-success'%>
+    </div>
+  <% end %>
+</div>
